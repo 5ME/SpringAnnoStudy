@@ -9,19 +9,19 @@ import org.springframework.stereotype.Controller;
 /**
  * MainConfig
  * 配置类 == 配置文件
- *
+ * <p>
  * 注解 @Configuration 告诉 Spring 这是一个配置类
- *
+ * <p>
  * 注解 @ComponentScan 指定组件扫描规则
  * value 指定要扫描的包，excludeFilters 指定排除规则
  *
  * @author Yin Guiqing
  */
 @Configuration
-@ComponentScan(value = "com.ygq", excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ANNOTATION,
+@ComponentScan(value = "com.ygq",
+        excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION,
                 classes = {Controller.class})
-})
+        })
 public class MainConfig {
     /**
      * 注解 @Bean 在容器中注册一个 bean
@@ -41,6 +41,7 @@ public class MainConfig {
     public Person person01() {
         return new Person("Bill Gates", 65);
     }
+
     @Bean("Linus")
     @Conditional({LinuxCondition.class})
     public Person person02() {
